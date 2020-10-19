@@ -123,7 +123,7 @@ print(flat)
 ```
 
 
-There will be a nice error message the dict can not be flattened including the path to the invalid element.
+There will be a nice error message if the dict can not be flattened including the path to the invalid element.
 
 ```python
 from dotli.errors import SeparatorInKeyError
