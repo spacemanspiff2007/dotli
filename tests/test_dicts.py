@@ -3,7 +3,7 @@ from dotli import Dotli
 
 def test_short():
     data = {'a': 1, 'b': 2}
-    result = {'a': 1, 'b': 2,}
+    result = {'a': 1, 'b': 2, }
 
     d = Dotli()
     assert d.flatten(data) == result
@@ -54,7 +54,7 @@ def test_digit_in_dict():
 
 
 def test_int_keys_dict():
-    data = {'a': {'1': [1], '2': ['e1'],}}
+    data = {'a': {'1': [1], '2': ['e1'], }}
     result = {'a.1.[0]': 1, 'a.2.[0]': 'e1'}
 
     d = Dotli(list_brackets=True)

@@ -32,4 +32,3 @@ class SeparatorInKeyError(DotliException):
 
 class KeyAlreadyExistsError(DotliException):
     _msg_template = 'Key "{value}" does already exist!'
-

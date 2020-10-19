@@ -22,8 +22,8 @@ def test_flatten_list_start():
 def test_flatten_list_mid():
     data = {
         'a': [
-            {'b': 1, 'c': 2,},
-            {'e': 3, 'f': 4,},
+            {'b': 1, 'c': 2, },
+            {'e': 3, 'f': 4, },
         ]
     }
 

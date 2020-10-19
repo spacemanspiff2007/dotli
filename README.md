@@ -1,4 +1,7 @@
 # Dotli
+---
+[![Build Status](https://travis-ci.org/spacemanspiff2007/dotli.svg?branch=master)](https://travis-ci.com/spacemanspiff2007/dotli)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dotli)
 
 yet another library for flattening structures
 
@@ -32,20 +35,18 @@ assert data == orig
 print(flat)
 ```
 
-```json
+```python
 {
   'a.c': 'val1',
   'a.d': 'val2',
   'b.c': 2,
   'b.d.key3': 'val3',
-  'b.d.key4': 'val4'
+  'b.d.key4': 'val4',
 }
 ```
 
 The separator can be configured
 ```python
-from dotli import Dotli
-
 data = {
     'a': {'c': 'd'},
     'b': {'e': 'f'}
@@ -55,18 +56,16 @@ d = Dotli(separator='-')
 print(d.flatten(data))
 ```
 
-```json
+```python
 {
   'a-c': 'd',
-  'b-e': 'f'
+  'b-e': 'f',
 }
 ```
 
 It is also possible to flatten lists and a mixture of lists and dicts
 
 ```python
-from dotli import Dotli
-
 data = {
     'a': {
         'c': [1, 2, 3],
@@ -79,7 +78,7 @@ d = Dotli()
 print(d.flatten(data))
 ```
 
-```json
+```python
 {
   'a.c.0': 1,
   'a.c.1': 2,
@@ -87,15 +86,13 @@ print(d.flatten(data))
   'a.d.0': 'e1',
   'a.d.1': 'e2',
   'a.d.2': 'e3',
-  'b': 'h'
+  'b': 'h',
 }
 ```
 
 List indices can be wrapped in square brackets to allow numerical strings in dicts as keys
 
 ```python
-from dotli import Dotli
-
 data = {
     'a': {
         '1': [1, 2, 3],
@@ -111,7 +108,7 @@ assert data == orig
 print(flat)
 ```
 
-```json
+```python
 {
   'a.1.[0]': 1,
   'a.1.[1]': 2,
@@ -119,7 +116,7 @@ print(flat)
   'a.2.[0]': 'e1',
   'a.2.[1]': 'e2',
   'a.2.[2]': 'e3',
-  'b': 'h'
+  'b': 'h',
 }
 ```
 
@@ -127,7 +124,6 @@ print(flat)
 There will be a nice error message the dict can not be flattened including the path to the invalid element.
 
 ```python
-from dotli import Dotli
 from dotli.errors import SeparatorInKeyError
 
 data = {
@@ -151,7 +147,6 @@ Separator "." is in key "b.b"! @ root.a
 When elements are missing in a list Dotli will throw an error
 
 ```python
-from dotli import Dotli
 from dotli.errors import IncompleteListError
 
 data = {
@@ -173,8 +168,6 @@ However it is possible to specify a fill value
 which will automatically be inserted into the list for missing entries
 
 ```python
-from dotli import Dotli
-
 data = {
     'a.0': 0,
     'a.2': 2,
@@ -184,6 +177,8 @@ d = Dotli(fill_value_list=None)
 print(d.unflatten(data))
 ```
 
-```
-{'a': [0, None, 2]}
+```python
+{
+  'a': [0, None, 2],
+}
 ```

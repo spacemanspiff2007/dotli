@@ -35,13 +35,11 @@ assert data == orig
 print(flat)
 ```
 
-```result:json
+```result:flat
 ```
 
 The separator can be configured
 ```python
-from dotli import Dotli
-
 data = {
     'a': {'c': 'd'},
     'b': {'e': 'f'}
@@ -51,14 +49,12 @@ d = Dotli(separator='-')
 print(d.flatten(data))
 ```
 
-```result:json
+```result:flat
 ```
 
 It is also possible to flatten lists and a mixture of lists and dicts
 
 ```python
-from dotli import Dotli
-
 data = {
     'a': {
         'c': [1, 2, 3],
@@ -71,14 +67,12 @@ d = Dotli()
 print(d.flatten(data))
 ```
 
-```result:json
+```result:flat
 ```
 
 List indices can be wrapped in square brackets to allow numerical strings in dicts as keys
 
 ```python
-from dotli import Dotli
-
 data = {
     'a': {
         '1': [1, 2, 3],
@@ -94,14 +88,13 @@ assert data == orig
 print(flat)
 ```
 
-```result:json
+```result:flat
 ```
 
 
 There will be a nice error message the dict can not be flattened including the path to the invalid element.
 
 ```python
-from dotli import Dotli
 from dotli.errors import SeparatorInKeyError
 
 data = {
@@ -124,7 +117,6 @@ except SeparatorInKeyError as e:
 When elements are missing in a list Dotli will throw an error
 
 ```python
-from dotli import Dotli
 from dotli.errors import IncompleteListError
 
 data = {
@@ -145,8 +137,6 @@ However it is possible to specify a fill value
 which will automatically be inserted into the list for missing entries
 
 ```python
-from dotli import Dotli
-
 data = {
     'a.0': 0,
     'a.2': 2,
@@ -156,5 +146,5 @@ d = Dotli(fill_value_list=None)
 print(d.unflatten(data))
 ```
 
-```result
+```result:flat
 ```

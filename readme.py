@@ -1,4 +1,7 @@
-import re, subprocess, sys, json
+import ast
+import re
+import subprocess
+import sys
 from typing import Dict
 
 DEFAULT_IMPORTS = """
@@ -25,7 +28,6 @@ trg = re.compile(
     r'(?P<rest>.*\n?)'                      # possible typos
     r'(?P<code>[^`]+)```', re.IGNORECASE
 )
-
 
 template = ''
 readme = ''
@@ -57,9 +59,31 @@ for m in trg.finditer(template):
     if _type.lower() == 'result':
         _to_run = snips[_id if _id is not None else last_id]
         __res = execute_code(_to_run)
-        # if the output is json we try to reformat it so we have pretty data structures
-        if _restype and _restype[1:].lower() == 'json':
-            __res = json.dumps(json.loads(__res.replace("'", '"')), indent=2).replace('"', "'")
+
+        # reformat simple data structures
+        if _restype and _restype.lower() == ':flat':
+            _restype = ':python'
+
+            lines = __res.splitlines()
+            for i, line in enumerate(lines):
+                if not line.startswith('{') and not line.endswith('}'):
+                    continue
+                obj = ast.literal_eval(line)
+                assert isinstance(obj, dict)    # flat objs are always a dict
+                new_line = '{\n'
+                for k, v in obj.items():
+                    new_line += f'  {k}' if not isinstance(k, str) else f"  '{k}'"
+                    new_line += ': '
+                    new_line += f'{v}' if not isinstance(v, str) else f"'{v}'"
+                    new_line += ',\n'
+                new_line += '}'
+                lines[i] = new_line
+
+                # ensure it's a valid structure
+                ast.literal_eval(new_line)
+
+            __res = '\n'.join(lines)
+
         readme += template[slice_pos:m.start()] + f'```{_restype[1:] if _restype else ""}\n{__res}\n```'
         slice_pos = m.end()
         continue

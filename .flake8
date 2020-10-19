@@ -18,6 +18,7 @@ exclude =
     __pycache__,
     build,
     dist,
+    venv,
     conf,
     __init__.py,
     tests/context.py
