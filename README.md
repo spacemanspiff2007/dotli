@@ -2,8 +2,10 @@
 ---
 [![Build Status](https://travis-ci.org/spacemanspiff2007/dotli.svg?branch=master)](https://travis-ci.com/spacemanspiff2007/dotli)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dotli)
+![PyPI](https://img.shields.io/pypi/v/dotli)
+[![Downloads](https://pepy.tech/badge/dotli/month)](https://pepy.tech/project/dotli/month)
 
-yet another library for flattening structures
+Yet another library for flattening structures
 
 ## Installation
 ```bash
