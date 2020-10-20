@@ -27,9 +27,9 @@ setuptools.setup(
     version=__version__,
     author="spaceman_spiff",
     # author_email="",
-    description="Flatten/unflatten dicts",
+    description="An easy way to flatten and unflatten dicts and lists",
     keywords=[
-        'dict',
+        'json',
         'flatten',
         'unflatten',
         'unpack',
