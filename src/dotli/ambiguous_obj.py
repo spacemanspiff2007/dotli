@@ -54,7 +54,7 @@ class AmbiguousObj:
         return value
 
     def reduce(self, fill_list=MISSING) -> typing.Union[list, dict]:
-        if self.is_list:
+        if self.is_list and self.list:
             new_list = []
             for i in range(max(self.list.keys()) + 1):
                 try:

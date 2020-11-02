@@ -76,3 +76,11 @@ def test_flatten_list_end():
     d = Dotli(list_brackets=True)
     assert d.flatten(data) == result
     assert data == d.unflatten(result)
+
+
+def test_empty():
+    d = Dotli()
+    assert d.flatten({}) == {}
+    assert d.flatten([]) == {}
+
+    assert d.unflatten({}) == {}
