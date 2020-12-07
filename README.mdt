@@ -1,6 +1,6 @@
 # Dotli
 ---
-[![Build Status](https://travis-ci.org/spacemanspiff2007/dotli.svg?branch=master)](https://travis-ci.com/spacemanspiff2007/dotli)
+![Test Status](https://github.com/spacemanspiff2007/dotli/workflows/Tests/badge.svg)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dotli)](https://github.com/spacemanspiff2007/dotli)
 [![PyPI](https://img.shields.io/pypi/v/dotli)](https://github.com/spacemanspiff2007/dotli)
 [![Downloads](https://pepy.tech/badge/dotli/month)](https://pepy.tech/project/dotli/month)
